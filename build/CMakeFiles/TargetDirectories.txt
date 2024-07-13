@@ -1,0 +1,3 @@
+/Users/jlu486/Documents/Projects/OSM2GMNS/cibw-arm64/build/CMakeFiles/hello.dir
+/Users/jlu486/Documents/Projects/OSM2GMNS/cibw-arm64/build/CMakeFiles/edit_cache.dir
+/Users/jlu486/Documents/Projects/OSM2GMNS/cibw-arm64/build/CMakeFiles/rebuild_cache.dir

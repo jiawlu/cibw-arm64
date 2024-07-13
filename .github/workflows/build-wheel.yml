@@ -1,0 +1,31 @@
+name: build-wheels
+
+on:
+  push:
+
+jobs:
+  build_wheels:
+    name: Build wheel
+    runs-on: macos-14
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app
+      
+      - name: Install Homebrew and packages
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          brew update
+          brew install ninja
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.19
+        env:
+          CIBW_BUILD: cp38-macosx_arm64
+          CIBW_ENVIRONMENT_MACOS: >
+            CC=gcc-14
+            CXX=g++-14
+            MACOSX_DEPLOYMENT_TARGET=13.0
+
