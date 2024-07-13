@@ -36,6 +36,7 @@ cmake.version = ">=3.25"
 # cmake.args = ["-DBUILD_OSM2GMNS_EXE=OFF"]
 cmake.build-type = "Release"
 cmake.verbose = true
+logging.level = "INFO"
 
 # sdist.include = [
 #     "docs",
