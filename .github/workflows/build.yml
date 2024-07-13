@@ -1,0 +1,31 @@
+name: build
+
+on:
+  push:
+
+jobs:
+  build:
+    name: Build
+    runs-on: macos-14
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app
+      
+      - name: Install Homebrew and packages
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          brew update
+          brew install ninja
+
+      - name: "Build"
+        run: |
+          rm -rf build && mkdir build && cd build
+          cmake -DCMAKE_C_COMPILER=gcc-14 \
+                -DCMAKE_CXX_COMPILER=g++-14 \
+                -DCMAKE_BUILD_TYPE=Release \
+                -GNinja .. 
+          ninja
+
